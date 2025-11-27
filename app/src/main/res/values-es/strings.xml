@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MusicRightsApp</string>
+    <string name="show_title">Titulo de show</string>
+    <string name="city">Ciudad</string>
+    <string name="province">Provincia</string>
+    <string name="concert_date">Fecha del concierto</string>
+    <string name="concert_status">Estado del concierto</string>
+    <string name="performed">¿Actuado?</string>
+    <string name="ticket_price">Precio de ticket</string>
+    <string name="register">Registrar</string>
+</resources>
