@@ -1,8 +1,14 @@
 package com.svalero.musicrightsapp.view;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +35,6 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
     private ConcertAdapter concertAdapter;
     private List<Concert> concertList;
     private ConcertListPresenter presenter;
-    private ConcertListModel model;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,4 +82,22 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
     public void showError(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_register_concert) {
+            Intent intent = new Intent(this, RegisterConcertView.class);
+            startActivity(intent);
+
+            return true;
+        }
+        return false;
+    }
 }
+
