@@ -8,15 +8,18 @@
     android:padding="10dp"
     tools:context=".view.RegisterConcertView">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            tools:ignore="MissingConstraints">
 
         <EditText
-            android:id="@+id/Concert_show_title"
+            android:id="@+id/concert_show_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -40,7 +43,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/cocert_date"
+            android:id="@+id/concert_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

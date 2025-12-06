@@ -37,7 +37,8 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
         Concert concert = concertList.get(position);
 
         holder.concertName.setText(concert.getShowTitle());
-        holder.concertDescription.setText(concert.getCity() + " - " + concert.getDate());
+        holder.concertDescription.setText(concert.getCity() + " - " + concert.getProvince());
+
     }
 
     @Override
