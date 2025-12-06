@@ -25,9 +25,6 @@ import com.svalero.musicrightsapp.presenter.ConcertListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ConcertListView extends AppCompatActivity implements ConcertListContract.View {
 
@@ -68,9 +65,10 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
 
     @Override
     public void showConcerts(List<Concert> concerts) {
-        concertList.clear();
-        concertList.addAll(concerts);
-        concertAdapter.notifyDataSetChanged();
+            concertList.clear();
+            concertList.addAll(concerts);
+            concertAdapter.notifyDataSetChanged();
+
     }
 
     @Override
