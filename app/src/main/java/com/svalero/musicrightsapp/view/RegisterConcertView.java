@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -52,7 +53,8 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
             ((EditText) findViewById(R.id.concert_province)).setText(concert.getProvince());
             ((EditText) findViewById(R.id.concert_date)).setText(DateUtil.formateDate(LocalDate.parse(concert.getDate())));
             ((EditText) findViewById(R.id.concert_status)).setText(concert.getStatus());
-            ((EditText) findViewById(R.id.concert_performed)).setText(String.valueOf(concert.getPerformed()));
+            CheckBox cbPerformed = findViewById(R.id.concert_performed);
+            cbPerformed.setChecked(concert.getPerformed());
             ((EditText) findViewById(R.id.concert_ticket_price)).setText(String.valueOf(concert.getTicketPrice()));
         }
     }
@@ -67,8 +69,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         EditText etProvince = findViewById(R.id.concert_province);
         EditText etDate = findViewById(R.id.concert_date);
         EditText etStatus = findViewById(R.id.concert_status);
-        EditText etPerformed = findViewById(R.id.concert_performed);
-        EditText etPrice = findViewById(R.id.concert_ticket_price);
+        CheckBox cbPerformed = findViewById(R.id.concert_performed);        EditText etPrice = findViewById(R.id.concert_ticket_price);
 
         //PARSEO PARA ENVIAR LOS DATOS A LA API
         String title = etTitle.getText().toString();
@@ -76,7 +77,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         String province = etProvince.getText().toString();
         String status = etStatus.getText().toString();
         LocalDate date = (etDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etDate.getText().toString());
-        Boolean performed = (!etPerformed.getText().toString().isEmpty()) && Boolean.parseBoolean(etPerformed.getText().toString());
+        Boolean performed = cbPerformed.isChecked();
         Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
 
         Float latitude = 0.0F;
