@@ -9,4 +9,6 @@
     <string name="performed">¿Actuado?</string>
     <string name="ticket_price">Precio de ticket</string>
     <string name="register">Registrar</string>
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
 </resources>

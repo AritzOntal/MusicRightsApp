@@ -3,7 +3,9 @@ package com.svalero.musicrightsapp.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +23,8 @@ import java.time.LocalDate;
 public class RegisterConcertView extends AppCompatActivity implements RegisterConcertContract.View {
 
     RegisterConcertContract.Presenter presenter;
+    private Boolean isEditMode = false;
+    private long idConcertToEdit = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,42 +33,77 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         setContentView(R.layout.activity_register_concert);
 
         presenter = new RegisterConcertPresenter(this);
+
+        Intent intent = getIntent();
+
+        //SI EL INTENT VIENE CON UN OBJETO, RELLENAMOS DATOS, PILLAMOS EL ID Y CAMBIAMOS EL BOTON:
+
+        if (intent != null && intent.hasExtra("concert_data")) {
+            isEditMode = true;
+            Concert concert = (Concert) intent.getSerializableExtra("concert_data");
+
+            idConcertToEdit = concert.getId();
+
+            Button btn = findViewById(R.id.register_concert_button);
+            btn.setText("Modificar");
+
+            ((EditText) findViewById(R.id.concert_show_title)).setText(concert.getShowTitle());
+            ((EditText) findViewById(R.id.concert_city)).setText(concert.getCity());
+            ((EditText) findViewById(R.id.concert_province)).setText(concert.getProvince());
+            ((EditText) findViewById(R.id.concert_date)).setText(DateUtil.formateDate(LocalDate.parse(concert.getDate())));
+            ((EditText) findViewById(R.id.concert_status)).setText(concert.getStatus());
+            ((EditText) findViewById(R.id.concert_performed)).setText(String.valueOf(concert.getPerformed()));
+            ((EditText) findViewById(R.id.concert_ticket_price)).setText(String.valueOf(concert.getTicketPrice()));
+        }
     }
+
+    //SI NO, SIMPLEMENTE EJECUTAMOS EL DE REGISTRO
 
     public void registerConcert(View view) {
 
-        long musicianId = 1L;
+        //RECOGIDA DE DATOS
+        EditText etTitle = findViewById(R.id.concert_show_title);
+        EditText etCity = findViewById(R.id.concert_city);
+        EditText etProvince = findViewById(R.id.concert_province);
+        EditText etDate = findViewById(R.id.concert_date);
+        EditText etStatus = findViewById(R.id.concert_status);
+        EditText etPerformed = findViewById(R.id.concert_performed);
+        EditText etPrice = findViewById(R.id.concert_ticket_price);
 
-        String title = ((EditText) findViewById(R.id.concert_show_title)).getText().toString();
-        String city = ((EditText) findViewById(R.id.concert_city)).getText().toString();
-        String province = ((EditText) findViewById(R.id.concert_province)).getText().toString();
-        LocalDate date = DateUtil.parseDate(((EditText) findViewById(R.id.concert_date)).getText().toString());
-        String status = ((EditText) findViewById(R.id.concert_status)).getText().toString();
-        Boolean performed = Boolean.parseBoolean(((EditText) findViewById(R.id.concert_performed)).getText().toString());
-        Float price = Float.parseFloat(((EditText) findViewById(R.id.concert_ticket_price)).getText().toString());
+        //PARSEO PARA ENVIAR LOS DATOS A LA API
+        String title = etTitle.getText().toString();
+        String city = etCity.getText().toString();
+        String province = etProvince.getText().toString();
+        String status = etStatus.getText().toString();
+        LocalDate date = (etDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etDate.getText().toString());
+        Boolean performed = (!etPerformed.getText().toString().isEmpty()) && Boolean.parseBoolean(etPerformed.getText().toString());
+        Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
+
         Float latitude = 0.0F;
         Float longitude = 0.0F;
 
-        Musician musician = new Musician();
-        musician.setId(musicianId);
+        // LÓGICA DE DECISIÓN
 
-        presenter.registerConcert(title, city, province, date, status, performed, price, latitude, longitude, musician);
+        if (isEditMode) {
+            presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price);
+
+        } else {
+            long defaultMusicianId = 1L;
+            Musician musician = new Musician();
+            musician.setId(defaultMusicianId);
+
+            presenter.registerConcert(title, city, province, date, status, performed, price, latitude, longitude, musician);
         }
-
+    }
 
     @Override
     public void showSuccessMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        finish(); // Cerramos la pantalla para volver a la lista
+        finish();
     }
 
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void resetForm() {
-
     }
 }

@@ -39,4 +39,26 @@ public class RegisterConcertModel implements RegisterConcertContract.Model {
             }
         });
     }
+
+    @Override
+    public void modifyConcert(long id, Concert concert, OnRegisterListener listener) {
+        ConcertApiInterface api = ConcertApi.buildInstance();
+        Call<Concert> call = api.modifyConcert(id, concert);
+
+        call.enqueue(new Callback<Concert>() {
+            @Override
+            public void onResponse(Call<Concert> call, Response<Concert> response) {
+                if (response.isSuccessful()) {
+                    listener.onRegisterSuccess(response.body());
+                } else {
+                    listener.onRegisterError("No se pudo modificar. Código: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Concert> call, Throwable t) {
+                listener.onRegisterError("Error de conexión: " + t.getMessage());
+            }
+        });
+    }
 }

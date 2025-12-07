@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ConcertListView extends AppCompatActivity implements ConcertListContract.View {
+public class ConcertListView extends AppCompatActivity implements ConcertListContract.View, ConcertAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private ConcertAdapter concertAdapter;
@@ -50,7 +50,7 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
         concertList = new ArrayList<>();
 
         //Crear el adaptador y dárselo al RecyclerView (le pasamos this porque le dice le contexto)
-        concertAdapter = new ConcertAdapter(this, concertList);
+        concertAdapter = new ConcertAdapter(this, concertList, this);
         recyclerView.setAdapter(concertAdapter);
     }
 
@@ -96,6 +96,20 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
             return true;
         }
         return false;
+    }
+
+
+    @Override
+    public void onEditClick(Concert concert) {
+        Intent intent = new Intent(this, RegisterConcertView.class);
+        intent.putExtra("concert_data", concert);
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteClick(long id) {
+
     }
 }
 

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Concert {
+public class Concert implements Serializable {
     private Long id;
     private String showTitle;
     private String city;

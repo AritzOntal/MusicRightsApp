@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,19 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
 
     private Context context;
     private List<Concert> concertList;
+    private OnItemClickListener listener;
 
-    public ConcertAdapter(Context context, List<Concert> dataList) {
+    //Definimos la Interfaz (Contrato)
+    public interface OnItemClickListener {
+        void onEditClick(Concert concert);
+        void onDeleteClick(long id);
+    }
+
+    // Constructor que pide el listener
+    public ConcertAdapter(Context context, List<Concert> dataList, OnItemClickListener listener) {
         this.context = context;
         this.concertList = dataList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,6 +49,15 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
         holder.concertName.setText(concert.getShowTitle());
         holder.concertDescription.setText(concert.getCity() + " - " + concert.getProvince());
 
+        // Configurar el Click de EDITAR
+        holder.modifyItemConcertButton.setOnClickListener(view -> {
+            listener.onEditClick(concert); // Pasamos el objeto entero
+        });
+
+        // Configurar el Click de BORRAR
+        holder.deleteItemConcertButton.setOnClickListener(view -> {
+            listener.onDeleteClick(concert.getId()); // Pasamos solo el ID
+        });
     }
 
     @Override
@@ -48,14 +67,18 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
 
     public class ConcertHolder extends RecyclerView.ViewHolder {
 
-        private TextView concertName;
-        private TextView concertDescription;
+        public TextView concertName;
+        public TextView concertDescription;
+        public ImageButton modifyItemConcertButton; // Botones públicos para acceder desde onBindViewHolder
+        public ImageButton deleteItemConcertButton;
 
         public ConcertHolder(@NonNull View itemView) {
             super(itemView);
 
             concertName = itemView.findViewById(R.id.item_concert_name);
             concertDescription = itemView.findViewById(R.id.item_concert_description);
+            modifyItemConcertButton = itemView.findViewById(R.id.modifyItemConcertButton);
+            deleteItemConcertButton = itemView.findViewById(R.id.deleteItemConcertButton);
         }
     }
 }
