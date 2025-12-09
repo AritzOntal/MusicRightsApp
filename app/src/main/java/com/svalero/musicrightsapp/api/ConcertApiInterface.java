@@ -4,6 +4,7 @@ import com.svalero.musicrightsapp.domain.Concert;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -14,9 +15,15 @@ public interface ConcertApiInterface {
     @GET("concerts")
     Call<List<Concert>> getConcerts();
 
+    @GET("concerts")
+    Call <Concert> getConcert(@Path("id") long id);
+
     @POST("concerts")
     Call<Concert> addConcert(@Body Concert concert);
 
     @PUT("concerts/{id}")
     Call<Concert> modifyConcert(@Path("id") long id, @Body Concert concert);
+
+    @DELETE("concerts/{id}")
+    Call<Concert> deleteConcert(@Path("id")long id);
 }

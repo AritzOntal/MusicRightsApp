@@ -21,17 +21,18 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
     private List<Concert> concertList;
     private OnItemClickListener listener;
 
-    //Definimos la Interfaz (Contrato)
+    //CONTRATO
     public interface OnItemClickListener {
         void onEditClick(Concert concert);
         void onDeleteClick(long id);
+        void onConcertDetailsClick(long id);
     }
 
     // Constructor que pide el listener
     public ConcertAdapter(Context context, List<Concert> dataList, OnItemClickListener listener) {
         this.context = context;
         this.concertList = dataList;
-        this.listener = listener;
+        this.listener = listener; //ESTA VARIABLE ES EL THIS QUE LE PASA LA ACTIVITY PARA COLARSE COMO UN LISNTER (PORQUE FIRMA CONTRATO ONITEMCLICKLISTENER)
     }
 
     @NonNull
@@ -51,13 +52,17 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
 
         // Configurar el Click de EDITAR
         holder.modifyItemConcertButton.setOnClickListener(view -> {
-            listener.onEditClick(concert); // Pasamos el objeto entero
+            listener.onEditClick(concert); // RECONOCE EL CLICK Y DESPUÉS USA EL CONTRATO
         });
 
         // Configurar el Click de BORRAR
         holder.deleteItemConcertButton.setOnClickListener(view -> {
-            listener.onDeleteClick(concert.getId()); // Pasamos solo el ID
+            listener.onDeleteClick(concert.getId());
         });
+
+        holder.itemView.setOnClickListener(view ->
+                listener.onConcertDetailsClick(concert.getId()
+                ));
     }
 
     @Override
