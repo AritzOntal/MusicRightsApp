@@ -68,7 +68,6 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
             concertList.clear();
             concertList.addAll(concerts);
             concertAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -80,6 +79,12 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
     public void showError(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void resetList() {
+        presenter.loadConcerts();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +114,13 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
 
     @Override
     public void onDeleteClick(long id) {
+        presenter.deleteConcerts(id);
+    }
 
+    @Override
+    public void onConcertDetailsClick(long id) {
+        Intent intent = new Intent(this, DetailsConcertView.class);
+        intent.putExtra("id", id);
     }
 }
 

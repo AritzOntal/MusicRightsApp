@@ -25,6 +25,12 @@ public class ConcertListPresenter implements ConcertListContract.Presenter, Conc
     }
 
     @Override
+    public void deleteConcerts(long id) {
+        model.deleteConcerts(id, this);
+    }
+
+
+    @Override
     public void onLoadSucces(List<Concert> concerts) {
         view.showConcerts(concerts);
         view.showMessage("Los conciertos se han cargado con éxito");
@@ -34,4 +40,17 @@ public class ConcertListPresenter implements ConcertListContract.Presenter, Conc
     public void onLoadError(String message) {
         view.showError(message);
     }
+
+
+    @Override
+    public void onDeleteSucces(String message) {
+        view.showMessage(message);
+        view.resetList();
+    }
+
+    @Override
+    public void onDeleteError(String message) {
+        view.showError(message);
+    }
+
 }

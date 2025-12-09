@@ -45,4 +45,29 @@ public class ConcertListModel implements ConcertListContract.Model {
             }
         });
     }
+
+    @Override
+    public void deleteConcerts(long id, OnLoadLister listener) {
+        ConcertApiInterface api = ConcertApi.buildInstance();
+        Call<Concert> call = api.deleteConcert(id);
+
+        call.enqueue(new Callback<Concert>() {
+            @Override
+            public void onResponse(Call<Concert> call, Response<Concert> response) {
+                if (response.code()== 204) {
+                    listener.onDeleteSucces("Concierto borrado con éxito");
+                } else {
+                    listener.onDeleteError("El concierto no ha sido borrado");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Concert> call, Throwable t) {
+                listener.onDeleteError("No se ha podido conectar:" + t.getMessage());
+            }
+        });
+    }
+
+
 }
