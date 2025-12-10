@@ -4,8 +4,6 @@ import com.svalero.musicrightsapp.api.ConcertApi;
 import com.svalero.musicrightsapp.api.ConcertApiInterface;
 import com.svalero.musicrightsapp.contract.RegisterConcertContract;
 
-import java.util.List;
-
 import com.svalero.musicrightsapp.domain.Concert;
 import retrofit2.Call;
 import retrofit2.Callback;

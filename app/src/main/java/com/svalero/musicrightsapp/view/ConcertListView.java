@@ -118,9 +118,10 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
     }
 
     @Override
-    public void onConcertDetailsClick(long id) {
+    public void onConcertDetailsClick(Concert concert) {
         Intent intent = new Intent(this, DetailsConcertView.class);
-        intent.putExtra("id", id);
+        intent.putExtra("concert_data", concert);
+        startActivity(intent);
     }
 }
 
