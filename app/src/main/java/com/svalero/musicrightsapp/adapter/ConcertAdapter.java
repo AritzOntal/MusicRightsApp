@@ -25,7 +25,7 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
     public interface OnItemClickListener {
         void onEditClick(Concert concert);
         void onDeleteClick(long id);
-        void onConcertDetailsClick(long id);
+        void onConcertDetailsClick(Concert concert);
     }
 
     // Constructor que pide el listener
@@ -60,10 +60,12 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
             listener.onDeleteClick(concert.getId());
         });
 
-        holder.itemView.setOnClickListener(view ->
-                listener.onConcertDetailsClick(concert.getId()
-                ));
-    }
+        holder.itemView.setOnClickListener(view -> {
+                listener.onConcertDetailsClick(concert);
+    });
+
+        }
+
 
     @Override
     public int getItemCount() {

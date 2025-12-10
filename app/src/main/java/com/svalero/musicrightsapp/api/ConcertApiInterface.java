@@ -15,9 +15,6 @@ public interface ConcertApiInterface {
     @GET("concerts")
     Call<List<Concert>> getConcerts();
 
-    @GET("concerts")
-    Call <Concert> getConcert(@Path("id") long id);
-
     @POST("concerts")
     Call<Concert> addConcert(@Body Concert concert);
 
@@ -26,4 +23,7 @@ public interface ConcertApiInterface {
 
     @DELETE("concerts/{id}")
     Call<Concert> deleteConcert(@Path("id")long id);
+
+    @GET("musicians")
+    Call <Concert> getMusicians();
 }
