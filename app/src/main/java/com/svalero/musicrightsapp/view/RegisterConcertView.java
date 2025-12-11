@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -38,7 +37,6 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         Intent intent = getIntent();
 
         //SI EL INTENT VIENE CON UN OBJETO, RELLENAMOS DATOS, PILLAMOS EL ID Y CAMBIAMOS EL BOTON:
-
         if (intent != null && intent.hasExtra("concert_data")) {
             isEditMode = true;
             Concert concert = (Concert) intent.getSerializableExtra("concert_data");
@@ -59,11 +57,8 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         }
     }
 
-    //SI NO, SIMPLEMENTE EJECUTAMOS EL DE REGISTRO
-
     public void registerConcert(View view) {
 
-        //RECOGIDA DE DATOS
         EditText etTitle = findViewById(R.id.concert_show_title);
         EditText etCity = findViewById(R.id.concert_city);
         EditText etProvince = findViewById(R.id.concert_province);
@@ -82,8 +77,6 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
 
         Float latitude = 0.0F;
         Float longitude = 0.0F;
-
-        // LÓGICA DE DECISIÓN
 
         if (isEditMode) {
             presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price);

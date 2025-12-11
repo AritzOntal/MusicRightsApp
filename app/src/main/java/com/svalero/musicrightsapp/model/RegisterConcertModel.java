@@ -23,7 +23,6 @@ public class RegisterConcertModel implements RegisterConcertContract.Model {
                     listener.onRegisterSuccess(response.body());
 
                 } else if (response.code() == 400) {
-                    //Avisamos al Listener pasand o el mensaje
                     listener.onRegisterError("Los datos de registro no son correctos" + response.code());
 
                 } else if (response.code() == 500) {

@@ -45,7 +45,7 @@ public class RegisterConcertPresenter implements RegisterConcertContract.Present
 
     @Override
     public void onRegisterSuccess(Concert createdConcert) {
-        view.showSuccessMessage("El concierto se han cargado con éxito");
+        view.showSuccessMessage("El concierto se ha registrado con éxito");
     }
 
     @Override
@@ -61,7 +61,6 @@ public class RegisterConcertPresenter implements RegisterConcertContract.Present
             return;
         }
 
-        // Construimos el objeto igual que en el register
         Concert concertToModify = Concert.builder()
                 .showTitle(showTitle)
                 .city(city)
