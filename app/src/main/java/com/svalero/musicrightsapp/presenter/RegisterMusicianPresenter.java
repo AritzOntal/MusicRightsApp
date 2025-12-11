@@ -4,6 +4,8 @@ import com.svalero.musicrightsapp.contract.RegisterMusicianContract;
 import com.svalero.musicrightsapp.domain.Musician;
 import com.svalero.musicrightsapp.model.RegisterMusicianModel;
 
+import java.time.LocalDate;
+
 
 public class RegisterMusicianPresenter implements RegisterMusicianContract.Presenter, RegisterMusicianContract.Model.OnRegisterListener {
 
@@ -29,14 +31,16 @@ public class RegisterMusicianPresenter implements RegisterMusicianContract.Prese
 
 
     @Override
-    public void modifyMusician(long id, String firstName, String lastName, String birthDate, boolean affiliated, String dni, float performanceFee, long affiliatedNumber) {
-            view.showError("La fecha de nacimiento no es válida");
-
+    public void modifyMusician(long id, String firstName, String lastName, LocalDate birthDate, boolean affiliated, String dni, float performanceFee, long affiliatedNumber) {
+        if (LocalDate.parse(birthDate.toString()).isAfter(LocalDate.now())) {
+            view.showError("La fecha de nacimiento no puede ser la hoy");
+            return;
+        }
         Musician musicianToModify = Musician.builder()
                 .id(id)
                 .firstName(firstName)
                 .lastName(lastName)
-                .birthDate(birthDate)
+                .birthDate(birthDate.toString())
                 .affiliated(affiliated)
                 .dni(dni)
                 .performanceFee(performanceFee)

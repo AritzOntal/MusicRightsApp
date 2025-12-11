@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- NOMBRE -->
         <EditText
             android:id="@+id/musician_name"
             android:layout_width="match_parent"
@@ -26,7 +25,6 @@
             android:hint="Nombre"
             android:inputType="textPersonName" />
 
-        <!-- APELLIDO -->
         <EditText
             android:id="@+id/musician_surname"
             android:layout_width="match_parent"
@@ -35,7 +33,6 @@
             android:hint="Apellidos"
             android:inputType="textPersonName" />
 
-        <!-- DNI -->
         <EditText
             android:id="@+id/musician_dni"
             android:layout_width="match_parent"
@@ -44,7 +41,6 @@
             android:hint="DNI"
             android:inputType="text" />
 
-        <!-- FECHA NACIMIENTO -->
         <EditText
             android:id="@+id/musician_birth_date"
             android:layout_width="match_parent"
