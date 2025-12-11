@@ -1,5 +1,6 @@
 package com.svalero.musicrightsapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -50,7 +51,6 @@ public class FavoriteConcertsView extends AppCompatActivity implements FavoriteC
 
     @Override
     public void showFavoriteConcerts(List<Concert> concerts) {
-
         favConcertList.clear();
         favConcertList.addAll(concerts);
         favConcertsAdapter.notifyDataSetChanged();
@@ -58,6 +58,7 @@ public class FavoriteConcertsView extends AppCompatActivity implements FavoriteC
 
     @Override
     public void showMessage(String message) {
+        presenter.loadFavoriteConcerts();
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
@@ -68,7 +69,10 @@ public class FavoriteConcertsView extends AppCompatActivity implements FavoriteC
 
     @Override
     public void onEditClick(Concert concert) {
+        Intent intent = new Intent(this, EditFavoriteConcerts.class);
+        intent.putExtra("concert_data", concert);
 
+        startActivity(intent);
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.content.Context;
 import com.svalero.musicrightsapp.contract.FavoriteConcertsContract;
 import com.svalero.musicrightsapp.domain.Concert;
 import com.svalero.musicrightsapp.model.FavoriteConcertModel;
-import com.svalero.musicrightsapp.view.FavoriteConcertsView;
 
 import java.util.List;
 

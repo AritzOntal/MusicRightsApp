@@ -3,6 +3,7 @@ package com.svalero.musicrightsapp.model;
 import android.content.Context;
 
 import com.svalero.musicrightsapp.Db.AppDatabase;
+import com.svalero.musicrightsapp.contract.EditFavoriteContract;
 import com.svalero.musicrightsapp.contract.FavoriteConcertsContract;
 import com.svalero.musicrightsapp.domain.Concert;
 
@@ -35,6 +36,8 @@ public class FavoriteConcertModel implements FavoriteConcertsContract.Model {
     public void deleteFavorite(long id, OnLoadFavoritesListener listener) {
         AppDatabase db = AppDatabase.getInstance(context);
         db.concertDao().delete(id);
+
+        listener.onSuccess("El concierto ha sido borrado con éxito");
     }
 
     @Override
