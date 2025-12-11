@@ -19,7 +19,9 @@ public class RegisterMusicianPresenter implements RegisterMusicianContract.Prese
 
     @Override
     public void registerMusician(Musician musician) {
-        view.showError("La fecha del músico tiene que ser anterior a hoy");
+        if(LocalDate.parse(musician.getBirthDate().toString()).isAfter(LocalDate.now())) {
+            view.showError("La fecha de nacimiento no puede ser la hoy");
+        }
 
         if (musician.getPerformanceFee() < 0) {
             view.showError("El caché no puede ser negativo");
