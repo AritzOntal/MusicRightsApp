@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.svalero.musicrightsapp.Db.AppDatabase;
 import com.svalero.musicrightsapp.R;
 import com.svalero.musicrightsapp.adapter.ConcertAdapter;
 import com.svalero.musicrightsapp.api.ConcertApi;
@@ -61,7 +62,6 @@ public class ConcertListView extends AppCompatActivity implements ConcertListCon
         //ACTIVAMOS EL presenter para que haga sus cosas llamando al model
         presenter.loadConcerts();
     }
-
 
     @Override
     public void showConcerts(List<Concert> concerts) {

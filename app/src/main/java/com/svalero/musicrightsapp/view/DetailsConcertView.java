@@ -2,15 +2,26 @@ package com.svalero.musicrightsapp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.svalero.musicrightsapp.Db.AppDatabase;
 import com.svalero.musicrightsapp.R;
+import com.svalero.musicrightsapp.adapter.FavConcertsAdapter;
+import com.svalero.musicrightsapp.contract.FavoriteConcertsContract;
 import com.svalero.musicrightsapp.domain.Concert;
+import com.svalero.musicrightsapp.presenter.ConcertListPresenter;
+import com.svalero.musicrightsapp.presenter.FavoriteConcertsPresenter;
 
-public class DetailsConcertView extends AppCompatActivity {
+import java.util.List;
+
+public class DetailsConcertView extends AppCompatActivity implements FavoriteConcertsContract.View{
+
+        private FavoriteConcertsPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +37,34 @@ public class DetailsConcertView extends AppCompatActivity {
         ((TextView) findViewById(R.id.detail_date)).setText(concert.getDate());
         ((TextView) findViewById(R.id.detail_price)).setText(String.valueOf(concert.getTicketPrice()));
         ((TextView) findViewById(R.id.detail_status)).setText(concert.getShowTitle());
+
+        presenter = new FavoriteConcertsPresenter(this, this);
+
+
+        Button btnAddFav = findViewById(R.id.btn_add_fav);
+        btnAddFav.setOnClickListener(v -> {
+            savetToFavorites(concert);
+        });
+    }
+
+
+    private void savetToFavorites (Concert concert) {
+        presenter.addFavoriteConcert(concert);
+    }
+
+    @Override
+    public void showFavoriteConcerts(List<Concert> concerts) {
+        presenter.loadFavoriteConcerts();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
