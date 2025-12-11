@@ -1,5 +1,7 @@
 package com.svalero.musicrightsapp.domain;
 
+import androidx.room.Entity;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;

@@ -31,7 +31,8 @@
         <activity android:name=".view.DetailsConcertView" />
         <activity android:name=".view.MusicianListView" />
         <activity android:name=".view.RegisterMusicianView" />
-
+        <activity android:name=".view.FavoriteConcertsView" />
+        <activity android:name=".view.ConcertListView" />
 
 
     </application>

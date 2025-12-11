@@ -16,11 +16,31 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         Button btnMuscians = findViewById(R.id.musicians_button);
+        Button btnConcerts = findViewById(R.id.concerts_button);
 
         btnMuscians.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this, MusicianListView.class);
+                startActivity(intent);
+            }
+        });
+
+        btnConcerts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, ConcertListView.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnFavorites = findViewById(R.id.favorites_button);
+
+        btnFavorites.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, FavoriteConcertsView.class);
                 startActivity(intent);
             }
         });
