@@ -64,7 +64,8 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         EditText etProvince = findViewById(R.id.concert_province);
         EditText etDate = findViewById(R.id.concert_date);
         EditText etStatus = findViewById(R.id.concert_status);
-        CheckBox cbPerformed = findViewById(R.id.concert_performed);        EditText etPrice = findViewById(R.id.concert_ticket_price);
+        CheckBox cbPerformed = findViewById(R.id.concert_performed);
+        EditText etPrice = findViewById(R.id.concert_ticket_price);
 
         //PARSEO PARA ENVIAR LOS DATOS A LA API
         String title = etTitle.getText().toString();
