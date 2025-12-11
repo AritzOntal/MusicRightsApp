@@ -15,12 +15,11 @@ public class ConcertListPresenter implements ConcertListContract.Presenter, Conc
         this.view = view;
         this.model = new ConcertListModel();
     }
-    //AQUIÍ SOY CAPAZ DE RECICIBR RESPUESTAS DEL MODELO GRACIAS A IMPLEMENTACION DEL INTERFACE (FIRMA DEL CONTRATO)
+    //AQUÍ SOY CAPAZ DE RECICIBR RESPUESTAS DEL MODELO GRACIAS A IMPLEMENTACION DEL INTERFACE (FIRMA DEL CONTRATO)
     @Override
     public void loadConcerts() {
         //LE PASARÉ AL MODEL "YO MISMO"
         model.loadConcerts(this);
-
     }
 
     @Override

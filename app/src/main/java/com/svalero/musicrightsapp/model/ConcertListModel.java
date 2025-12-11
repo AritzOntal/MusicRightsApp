@@ -20,16 +20,14 @@ public class ConcertListModel implements ConcertListContract.Model {
         ConcertApiInterface api = ConcertApi.buildInstance();
         Call<List<Concert>> call = api.getConcerts();
 
-        // EJECUTAMOS
+        // EJECUTAMOS/ENCOLAMOS LA LLAMADA
         call.enqueue(new Callback<List<Concert>>() {
             @Override
             public void onResponse(Call<List<Concert>> call, Response<List<Concert>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-
-                    // ÉXITO: Avisamos al Listener pasando la lista
                     List<Concert> concerts = response.body();
 
-                    //AVISAMOS AL LISTENER CON EL LISTENER EN EL QUE TENGO YA EL PRESENTER
+                    //AVISAMOS AL LISTENER CON EL LISTENER EN EL QUE TENGO YA EL PRESENTER (POLIMORFISMO)
                     listener.onLoadSucces(concerts);
 
                 } else {
@@ -40,7 +38,7 @@ public class ConcertListModel implements ConcertListContract.Model {
 
             @Override
             public void onFailure(Call<List<Concert>> call, Throwable t) {
-                // FALLO RED: Avisamos al Listener
+                //CUALQUIER FALLO DE RED
                 listener.onLoadError("Error Red: " + t.getMessage());
             }
         });
@@ -68,6 +66,4 @@ public class ConcertListModel implements ConcertListContract.Model {
             }
         });
     }
-
-
 }
