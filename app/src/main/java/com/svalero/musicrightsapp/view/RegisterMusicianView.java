@@ -73,7 +73,7 @@ public class RegisterMusicianView extends AppCompatActivity implements RegisterM
         String firstName = etName.getText().toString();
         String lastName = etSurname.getText().toString();
         String dni = etDni.getText().toString();
-        String birthDate = (etBirthDate.getText().toString());
+        LocalDate birthDate = (etBirthDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etBirthDate.getText().toString());
         Boolean affiliated = cbAffiliated.isChecked();
 
         // TERNARIO POR SI VIENE VACIO
@@ -87,7 +87,7 @@ public class RegisterMusicianView extends AppCompatActivity implements RegisterM
             Musician newMusician = Musician.builder()
                     .firstName(firstName)
                     .lastName(lastName)
-                    .birthDate(birthDate)
+                    .birthDate(birthDate.toString())
                     .dni(dni)
                     .affiliated(affiliated)
                     .performanceFee(performanceFee)
