@@ -11,4 +11,6 @@
     <string name="register">Registrar</string>
     <string name="modify">Modify</string>
     <string name="delete">Delete</string>
+    <string name="see_map">See map</string>
+    <string name="here">See map</string>
 </resources>

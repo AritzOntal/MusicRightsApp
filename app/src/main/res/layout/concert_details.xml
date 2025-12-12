@@ -143,7 +143,13 @@
                 android:id="@+id/btn_add_fav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Añadir favoritos" />
+                android:text="Guardar en favoritos" />
+
+            <Button
+                android:id="@+id/btn_view_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver mapa" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

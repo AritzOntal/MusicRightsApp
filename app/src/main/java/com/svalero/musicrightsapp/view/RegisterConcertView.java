@@ -9,22 +9,36 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mapbox.geojson.Point;
+import com.mapbox.maps.CameraOptions;
+import com.mapbox.maps.MapView;
+import com.mapbox.maps.Style;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
+import com.mapbox.maps.plugin.gestures.GesturesPlugin;
+import com.mapbox.maps.plugin.gestures.GesturesUtils;
+import com.mapbox.maps.plugin.gestures.OnMapClickListener;
 import com.svalero.musicrightsapp.R;
 import com.svalero.musicrightsapp.contract.RegisterConcertContract;
 import com.svalero.musicrightsapp.domain.Concert;
 import com.svalero.musicrightsapp.domain.Musician;
 import com.svalero.musicrightsapp.presenter.RegisterConcertPresenter;
 import com.svalero.musicrightsapp.util.DateUtil;
+import com.svalero.musicrightsapp.util.MapUtils;
 
 import java.time.LocalDate;
 
-public class RegisterConcertView extends AppCompatActivity implements RegisterConcertContract.View {
+public class RegisterConcertView extends AppCompatActivity implements RegisterConcertContract.View, OnMapClickListener {
 
-    RegisterConcertContract.Presenter presenter;
+    private RegisterConcertContract.Presenter presenter;
     private Boolean isEditMode = false;
     private long idConcertToEdit = 0;
+    private MapView mapView;
+    private GesturesPlugin gesturesPlugin;
+    private Point currentPoint;
+    private PointAnnotationManager pointAnnotationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +46,14 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register_concert);
 
-        presenter = new RegisterConcertPresenter(this);
+        //CARGAMOS EL MAPA
+        mapView = findViewById(R.id.mainMap);
+        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS);
 
+        initializeGesturesPlugin();
+        pointAnnotationManager = MapUtils.buildAnnotationManager(mapView);
+
+        presenter = new RegisterConcertPresenter(this);
         Intent intent = getIntent();
 
         //SI EL INTENT VIENE CON UN OBJETO, RELLENAMOS DATOS, PILLAMOS EL ID Y CAMBIAMOS EL BOTON:
@@ -57,6 +77,14 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         }
     }
 
+    @Override
+    public boolean onMapClick(@NonNull Point point) {
+        pointAnnotationManager.deleteAll();
+        currentPoint = point;
+        MapUtils.addMarker(this, pointAnnotationManager, point);
+        return false;
+    }
+
     public void registerConcert(View view) {
 
         EditText etTitle = findViewById(R.id.concert_show_title);
@@ -76,8 +104,9 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         Boolean performed = cbPerformed.isChecked();
         Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
 
-        Float latitude = 0.0F;
-        Float longitude = 0.0F;
+        //PILLAMOS POSICIONS DEL POINT
+        Double latitude = currentPoint.latitude();
+        Double longitude = currentPoint.longitude();
 
         if (isEditMode) {
             presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price);
@@ -93,6 +122,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
 
     @Override
     public void showSuccessMessage(String message) {
+        pointAnnotationManager.deleteAll();
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -101,4 +131,10 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+    private void  initializeGesturesPlugin() {
+        gesturesPlugin = GesturesUtils.getGestures(mapView);
+        gesturesPlugin.addOnMapClickListener(this);
+    }
+
 }

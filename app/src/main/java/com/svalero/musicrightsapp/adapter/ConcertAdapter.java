@@ -50,6 +50,7 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertH
         holder.concertName.setText(concert.getShowTitle());
         holder.concertDescription.setText(concert.getCity() + " - " + concert.getProvince());
 
+
         // Configurar el Click de EDITAR
         holder.modifyItemConcertButton.setOnClickListener(view -> {
             listener.onEditClick(concert); // RECONOCE EL CLICK Y DESPUÉS USA EL CONTRATO

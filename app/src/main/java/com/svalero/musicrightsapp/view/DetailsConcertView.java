@@ -45,7 +45,16 @@ public class DetailsConcertView extends AppCompatActivity implements FavoriteCon
         btnAddFav.setOnClickListener(v -> {
             savetToFavorites(concert);
         });
+
+        Button btnViewMap = findViewById(R.id.btn_view_map);
+        btnViewMap.setOnClickListener(v -> {
+            Intent goMaps = new Intent(this, MapActivity.class);
+            goMaps.putExtra("concert_data", concert);
+            startActivity(goMaps);
+        });
     }
+
+
 
 
     private void savetToFavorites (Concert concert) {

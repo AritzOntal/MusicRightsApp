@@ -37,9 +37,9 @@ public class Concert implements Serializable {
     @ColumnInfo
     private Float ticketPrice;
     @ColumnInfo
-    private Float longitude;
+    private Double longitude;
     @ColumnInfo
-    private Float latitude;
+    private Double latitude;
 
     @Ignore
     private Musician musician;
