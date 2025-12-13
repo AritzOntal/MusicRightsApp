@@ -54,7 +54,7 @@ public class RegisterConcertPresenter implements RegisterConcertContract.Present
     }
 
     @Override
-    public void modifyConcert(long concertId, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice) {
+    public void modifyConcert(long concertId, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice, Double longitude, Double latitude) {
 
         if (date.isAfter(LocalDate.now())) {
             view.showError("La fecha del concierto deber ser antes que hoy");
@@ -69,6 +69,8 @@ public class RegisterConcertPresenter implements RegisterConcertContract.Present
                 .status(status)
                 .performed(performed)
                 .ticketPrice(ticketPrice)
+                .longitude(longitude)
+                .latitude(latitude)
                 .build();
 
         // TODO RECOGER EL ID DEL MUSICO REAL

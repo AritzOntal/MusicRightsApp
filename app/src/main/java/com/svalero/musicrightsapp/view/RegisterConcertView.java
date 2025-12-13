@@ -74,6 +74,17 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
             CheckBox cbPerformed = findViewById(R.id.concert_performed);
             cbPerformed.setChecked(concert.getPerformed());
             ((EditText) findViewById(R.id.concert_ticket_price)).setText(String.valueOf(concert.getTicketPrice()));
+
+            Point point = Point.fromLngLat(concert.getLongitude(), concert.getLatitude());
+
+            MapUtils.getMarker(this, pointAnnotationManager, point, concert.getShowTitle());
+            CameraOptions cameraOptions = new CameraOptions.Builder()
+                    .center(point)
+                    .zoom(9.0)
+                    .pitch(0.0)
+                    .bearing(0.0)
+                    .build();
+            mapView.getMapboxMap().setCamera(cameraOptions);
         }
     }
 
@@ -95,6 +106,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         CheckBox cbPerformed = findViewById(R.id.concert_performed);
         EditText etPrice = findViewById(R.id.concert_ticket_price);
 
+
         //PARSEO PARA ENVIAR LOS DATOS A LA API
         String title = etTitle.getText().toString();
         String city = etCity.getText().toString();
@@ -104,12 +116,12 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         Boolean performed = cbPerformed.isChecked();
         Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
 
-        //PILLAMOS POSICIONS DEL POINT
+        //PILLAMOS POSICION DEL POINT
         Double latitude = currentPoint.latitude();
         Double longitude = currentPoint.longitude();
 
         if (isEditMode) {
-            presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price);
+            presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price, latitude, longitude);
 
         } else {
             long defaultMusicianId = 1L;

@@ -15,7 +15,7 @@ public interface RegisterConcertContract    {
 
     interface Presenter {
         void registerConcert(String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice, Double latitude, Double longitude, Musician musician);
-        void modifyConcert(long id, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice);
+        void modifyConcert(long id, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice, Double longitude, Double latitude);
 }
 
 
