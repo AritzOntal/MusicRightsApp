@@ -1,7 +1,6 @@
     package com.svalero.musicrightsapp.database;
 
     import androidx.room.Dao;
-    import androidx.room.Delete;
     import androidx.room.Insert;
     import androidx.room.OnConflictStrategy;
     import androidx.room.Query;
@@ -25,7 +24,4 @@
 
         @Update
         void update(Concert concert);
-
-        @Query("DELETE FROM concert WHERE showTitle = :id")
-        void deleteAll(long id);
     }
