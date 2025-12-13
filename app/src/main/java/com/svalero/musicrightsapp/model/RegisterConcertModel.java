@@ -20,7 +20,7 @@ public class RegisterConcertModel implements RegisterConcertContract.Model {
             @Override
             public void onResponse(Call<Concert> call, Response<Concert> response) {
                 if (response.code()== 201) {
-                    listener.onRegisterSuccess(response.body());
+                    listener.onRegisterSuccess("El concierto a sido registrado con éxito");
 
                 } else if (response.code() == 400) {
                     listener.onRegisterError("Los datos de registro no son correctos" + response.code());
@@ -46,7 +46,7 @@ public class RegisterConcertModel implements RegisterConcertContract.Model {
             @Override
             public void onResponse(Call<Concert> call, Response<Concert> response) {
                 if (response.isSuccessful()) {
-                    listener.onRegisterSuccess(response.body());
+                    listener.onRegisterSuccess("El concierto ha sido modificado con éxito");
                 } else {
                     listener.onRegisterError("No se pudo modificar. Código: " + response.code());
                 }

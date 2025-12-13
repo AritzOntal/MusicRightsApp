@@ -91,8 +91,8 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
     @Override
     public boolean onMapClick(@NonNull Point point) {
         pointAnnotationManager.deleteAll();
-        currentPoint = point;
         MapUtils.addMarker(this, pointAnnotationManager, point);
+        currentPoint = point;
         return false;
     }
 

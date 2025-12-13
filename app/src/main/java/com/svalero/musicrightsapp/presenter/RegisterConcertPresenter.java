@@ -44,17 +44,17 @@ public class RegisterConcertPresenter implements RegisterConcertContract.Present
     }
 
     @Override
-    public void onRegisterSuccess(Concert createdConcert) {
-        view.showSuccessMessage("El concierto se ha registrado con éxito");
+    public void onRegisterSuccess(String message) {
+        view.showSuccessMessage(message);
     }
 
     @Override
     public void onRegisterError(String message) {
-        view.showError("El concierto no se ha podido registrar");
+        view.showError(message);
     }
 
     @Override
-    public void modifyConcert(long concertId, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice, Double longitude, Double latitude) {
+    public void modifyConcert(long concertId, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice, Double latitude, Double longitude) {
 
         if (date.isAfter(LocalDate.now())) {
             view.showError("La fecha del concierto deber ser antes que hoy");
