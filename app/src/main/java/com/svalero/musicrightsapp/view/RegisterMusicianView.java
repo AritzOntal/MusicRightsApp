@@ -73,12 +73,38 @@ public class RegisterMusicianView extends AppCompatActivity implements RegisterM
         String firstName = etName.getText().toString();
         String lastName = etSurname.getText().toString();
         String dni = etDni.getText().toString();
-        LocalDate birthDate = (etBirthDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etBirthDate.getText().toString());
+        String birthDateStr = etBirthDate.getText().toString();
         Boolean affiliated = cbAffiliated.isChecked();
 
         // TERNARIO POR SI VIENE VACIO
         Float performanceFee = (etFee.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etFee.getText().toString());
         Long affiliatedNumber = (etAffiliatedNumber.getText().toString().isEmpty()) ? 0L : Long.parseLong(etAffiliatedNumber.getText().toString());
+
+        //VALIDACIONES DE SEGURIDAD
+        if (firstName.isEmpty() || lastName.isEmpty() || dni.isEmpty()) {
+            Toast.makeText(this, "Nombre, Apellidos y DNI son obligatorios", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!birthDateStr.isEmpty() && !birthDateStr.matches("\\d{2}-\\d{2}-\\d{4}")) {
+            Toast.makeText(this, "Formato fecha incorrecto. Usa: dd-MM-yyyy", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //PARSEAMOS LA FECHA PARA PODER USAR AFTER DE VALIDACION
+        LocalDate birthDate = (etBirthDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etBirthDate.getText().toString());
+
+        if (birthDate.isAfter(LocalDate.now())) {
+            Toast.makeText(this, "La fecha de nacimiento no puede ser futura", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (performanceFee < 0) {
+            Toast.makeText(this, "El caché debe ser positivo", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         if (isEditMode) {
             presenter.modifyMusician(idMusicianToEdit, firstName, lastName, birthDate, affiliated, dni, performanceFee, affiliatedNumber);
