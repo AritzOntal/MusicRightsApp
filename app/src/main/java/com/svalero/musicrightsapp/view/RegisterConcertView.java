@@ -113,9 +113,31 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         String city = etCity.getText().toString();
         String province = etProvince.getText().toString();
         String status = etStatus.getText().toString();
-        LocalDate date = (etDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etDate.getText().toString());
         Boolean performed = cbPerformed.isChecked();
+        String dateStr = etDate.getText().toString();
         Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
+
+        if (title.isEmpty() || city.isEmpty()) {
+            Toast.makeText(this, "El título y la ciudad son obligatorios", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!dateStr.isEmpty() && !dateStr.matches("\\d{2}-\\d{2}-\\d{4}")) {
+            Toast.makeText(this, "Formato de fecha incorrecto. Usa: dd-MM-yyyy", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (price < 0) {
+            Toast.makeText(this, "El precio no puede ser negativo", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        LocalDate date = (etDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etDate.getText().toString());
+
+        if (date.isAfter(LocalDate.now())) {
+            Toast.makeText(this, "La fecha del concierto deber ser antes que hoy", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Detenemos si currentPoint es nulo
         if (currentPoint == null) {
@@ -126,6 +148,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         //PILLAMOS POSICION DEL POINT
         Double latitude = currentPoint.latitude();
         Double longitude = currentPoint.longitude();
+
 
         if (isEditMode) {
             presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price, latitude, longitude);
