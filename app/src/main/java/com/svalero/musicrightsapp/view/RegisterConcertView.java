@@ -76,6 +76,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
             ((EditText) findViewById(R.id.concert_ticket_price)).setText(String.valueOf(concert.getTicketPrice()));
 
             Point point = Point.fromLngLat(concert.getLongitude(), concert.getLatitude());
+            currentPoint = point;
 
             MapUtils.getMarker(this, pointAnnotationManager, point, concert.getShowTitle());
             CameraOptions cameraOptions = new CameraOptions.Builder()
@@ -116,6 +117,12 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         Boolean performed = cbPerformed.isChecked();
         Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
 
+        // Detenemos si currentPoint es nulo
+        if (currentPoint == null) {
+            Toast.makeText(this, "Por favor, selecciona una ubicación en el mapa", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //PILLAMOS POSICION DEL POINT
         Double latitude = currentPoint.latitude();
         Double longitude = currentPoint.longitude();
@@ -124,7 +131,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
             presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price, latitude, longitude);
 
         } else {
-            long defaultMusicianId = 1L;
+            long defaultMusicianId = 18L;
             Musician musician = new Musician();
             musician.setId(defaultMusicianId);
 
