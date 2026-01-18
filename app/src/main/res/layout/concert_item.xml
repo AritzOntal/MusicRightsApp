@@ -1,74 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="8dp">
 
-            <LinearLayout
-                android:id="@+id/concert_item"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/item_concert_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:maxLines="2"
+                android:ellipsize="end"
+                tools:text="Nombre del Concierto" />
 
-                <TextView
-                    android:id="@+id/item_concert_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    tools:text="@string/show_title" />
-
-                <TextView
-                    android:id="@+id/item_concert_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/concert_date" />
-
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/modifyItemConcertButton"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/item_concert_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/modify"
-                android:onClick="modifyConcert"
-                android:padding="8dp"
-                android:src="@drawable/baseline_edit_24" />
-
-            <ImageButton
-                android:id="@+id/deleteItemConcertButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/outline_delete_24"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/delete"
-                android:padding="8dp"
-                app:tint="#D32F2F" />
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Descripción" />
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <ImageButton
+            android:id="@+id/modifyItemConcertButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_edit_24"
+            app:tint="#2196F3"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/deleteItemConcertButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/outline_delete_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#D32F2F" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
