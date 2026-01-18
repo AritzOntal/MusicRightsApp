@@ -24,12 +24,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <!-- Icono Decorativo (Opcional, le da un toque visual) -->
-            <!-- Nota: Si no tienes circle_background, puedes quitar esa línea o usar un color solido -->
-
-            <!-- Info del Concierto -->
-
-            <!-- Botón Editar -->
             <LinearLayout
                 android:id="@+id/linearLayoutInfo"
                 android:layout_width="0dp"
@@ -67,20 +61,19 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Editar"
+                android:contentDescription="@string/modify"
                 android:src="@drawable/baseline_edit_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnFavDelete"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="#1976D2" />
 
-            <!-- Botón Borrar -->
             <ImageButton
                 android:id="@+id/btnFavDelete"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Borrar"
+                android:contentDescription="@string/delete"
                 android:src="@drawable/outline_delete_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

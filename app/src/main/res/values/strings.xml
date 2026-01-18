@@ -1,15 +1,67 @@
 <resources>
     <string name="app_name">MusicRightsApp</string>
-    <string name="show_title">Titulo de show</string>
+
+    <string name="menu_musicians">Ver Músicos</string>
+    <string name="menu_concerts">Ver Conciertos</string>
+    <string name="menu_favorites">★ Mis Favoritos</string>
+
+    <string name="show_title">Título del show</string>
     <string name="city">Ciudad</string>
     <string name="province">Provincia</string>
     <string name="concert_date">Fecha del concierto</string>
-    <string name="concert_status">Estado del concierto</string>
-    <string name="performed">¿Actuado?</string>
-    <string name="ticket_price">Precio de ticket</string>
+    <string name="concert_status">Estado</string>
+    <string name="performed">¿Realizado?</string>
+    <string name="ticket_price">Precio ticket</string>
+
+    <string name="musician_name">Nombre</string>
+    <string name="musician_surname">Apellidos</string>
+    <string name="musician_dni">DNI</string>
+    <string name="musician_birth_date">Fecha Nacimiento</string>
+    <string name="musician_fee">Caché (€)</string>
+    <string name="musician_affiliated_num">Número de Afiliado</string>
+    <string name="musician_is_affiliated">¿Afiliado?</string>
+
+    <string name="label_date">Fecha</string>
+    <string name="label_location">Ubicación</string>
+    <string name="label_artist">Artista Principal</string>
+    <string name="label_price">Precio</string>
+    <string name="btn_save_fav">Guardar en favoritos</string>
+    <string name="btn_view_map">Ver mapa</string>
+
+    <string name="title_favorites">Mis Conciertos Favoritos</string>
+
     <string name="register">Registrar</string>
-    <string name="modify">Modify</string>
-    <string name="delete">Delete</string>
-    <string name="see_map">See map</string>
-    <string name="here">See map</string>
+    <string name="modify">Modificar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="see_map">Ver mapa</string>
+    <string name="here">Aquí</string>
+
+    <string name="desc_edit">Botón editar</string>
+    <string name="desc_delete">Botón borrar</string>
+    <string name="desc_header_img">Imagen cabecera concierto</string>
+
+    <!-- VALIDACIONES -->
+    <string name="val_required_fields">El título y la ciudad son obligatorios</string>
+    <string name="val_date_format">Formato de fecha incorrecto. Usa: dd-MM-yyyy</string>
+    <string name="val_price_error">El precio debe ser un número válido</string>
+    <string name="val_price_negative">El precio no puede ser negativo</string>
+    <string name="val_date_future">La fecha del concierto debe ser anterior a hoy</string>
+    <string name="val_map_required">Por favor, selecciona una ubicación en el mapa</string>
+
+
+    <string name="val_musician_required">Nombre, Apellidos y DNI son obligatorios</string>
+    <string name="val_birth_date_future">La fecha de nacimiento no puede ser futura</string>
+    <string name="val_cache_negative">El caché debe ser positivo</string>
+    <string name="val_dni_format">El DNI debe tener 8 números y una letra</string>
+
+    <string name="error_server_connection">No se ha podido conectar con el servidor. Código de error: %d</string>
+    <string name="error_network">Error Red: %s</string>
+    <string name="msg_concert_deleted">Concierto borrado con éxito</string>
+    <string name="error_concert_not_deleted">El concierto no ha sido borrado</string>
+    <string name="error_connection_general">No se ha podido conectar: %s</string>
+
+    <string name="msg_concerts_loaded">Los conciertos se han cargado con éxito</string>
+
+
 </resources>

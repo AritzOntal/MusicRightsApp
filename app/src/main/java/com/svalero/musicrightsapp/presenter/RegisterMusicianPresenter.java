@@ -19,25 +19,12 @@ public class RegisterMusicianPresenter implements RegisterMusicianContract.Prese
 
     @Override
     public void registerMusician(Musician musician) {
-        if(LocalDate.parse(musician.getBirthDate().toString()).isAfter(LocalDate.now())) {
-            view.showError("La fecha de nacimiento no puede ser la de hoy");
-        }
-
-        if (musician.getPerformanceFee() < 0) {
-            view.showError("El caché no puede ser negativo");
-            return;
-        }
-
         model.registerMusician(musician, this);
     }
 
 
     @Override
     public void modifyMusician(long id, String firstName, String lastName, LocalDate birthDate, boolean affiliated, String dni, float performanceFee, long affiliatedNumber) {
-        if (LocalDate.parse(birthDate.toString()).isAfter(LocalDate.now())) {
-            view.showError("La fecha de nacimiento no puede ser la de hoy");
-            return;
-        }
         Musician musicianToModify = Musician.builder()
                 .id(id)
                 .firstName(firstName)

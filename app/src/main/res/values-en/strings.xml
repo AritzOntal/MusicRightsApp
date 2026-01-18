@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MusicRightsApp</string>
+
+    <string name="menu_musicians">See Musicians</string>
+    <string name="menu_concerts">See Concerts</string>
+    <string name="menu_favorites">★ My Favorites</string>
+
+    <string name="show_title">Show Title</string>
+    <string name="city">City</string>
+    <string name="province">Province</string>
+    <string name="concert_date">Concert Date</string>
+    <string name="concert_status">Status</string>
+    <string name="performed">Performed?</string>
+    <string name="ticket_price">Ticket Price</string>
+
+    <string name="musician_name">First Name</string>
+    <string name="musician_surname">Last Name</string>
+    <string name="musician_dni">ID Card / DNI</string>
+    <string name="musician_birth_date">Birth Date</string>
+    <string name="musician_fee">Fee (€)</string>
+    <string name="musician_affiliated_num">Affiliation Number</string>
+    <string name="musician_is_affiliated">Affiliated?</string>
+
+    <string name="label_date">Date</string>
+    <string name="label_location">Location</string>
+    <string name="label_artist">Main Artist</string>
+    <string name="label_price">Price</string>
+    <string name="btn_save_fav">Save to Favorites</string>
+    <string name="btn_view_map">View Map</string>
+
+    <string name="title_favorites">My Favorite Concerts</string>
+
+    <string name="register">Register</string>
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="see_map">View Map</string>
+    <string name="here">Here</string>
+
+    <string name="desc_edit">Edit button</string>
+    <string name="desc_delete">Delete button</string>
+    <string name="desc_header_img">Concert header image</string>
+
+    <string name="mapbox_access_token">YOUR_TOKEN_HERE</string>
+
+    <!-- VALIDATIONS -->
+    <string name="val_required_fields">Title and city are required</string>
+    <string name="val_date_format">Invalid date format. Use: dd-MM-yyyy</string>
+    <string name="val_price_error">Price must be a valid number</string>
+    <string name="val_price_negative">Price cannot be negative</string>
+    <string name="val_date_future">Concert date must be before today</string>
+    <string name="val_map_required">Please select a location on the map</string>
+
+    <string name="val_musician_required">First Name, Last Name and ID Card are required</string>
+    <string name="val_birth_date_future">Birth date cannot be in the future</string>
+    <string name="val_cache_negative">Performance fee must be positive</string>
+    <string name="val_dni_format">DNI must have 8 numbers and a letter</string>
+
+    <string name="error_server_connection">Could not connect to the server. Error code: %d</string>
+    <string name="error_network">Network Error: %s</string>
+    <string name="msg_concert_deleted">Concert deleted successfully</string>
+    <string name="error_concert_not_deleted">The concert was not deleted</string>
+    <string name="error_connection_general">Could not connect: %s</string>
+
+    <string name="msg_concerts_loaded">Concerts loaded successfully</string>
+
+
+</resources>

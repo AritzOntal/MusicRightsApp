@@ -64,7 +64,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
             idConcertToEdit = concert.getId();
 
             Button btn = findViewById(R.id.register_concert_button);
-            btn.setText("Modificar");
+            btn.setText(R.string.modify);
 
             ((EditText) findViewById(R.id.concert_show_title)).setText(concert.getShowTitle());
             ((EditText) findViewById(R.id.concert_city)).setText(concert.getCity());
@@ -118,30 +118,30 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
         Float price = (etPrice.getText().toString().isEmpty()) ? 0.0f : Float.parseFloat(etPrice.getText().toString());
 
         if (title.isEmpty() || city.isEmpty()) {
-            Toast.makeText(this, "El título y la ciudad son obligatorios", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_required_fields, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!dateStr.isEmpty() && !dateStr.matches("\\d{2}-\\d{2}-\\d{4}")) {
-            Toast.makeText(this, "Formato de fecha incorrecto. Usa: dd-MM-yyyy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_date_format, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (price < 0) {
-            Toast.makeText(this, "El precio no puede ser negativo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_price_negative, Toast.LENGTH_SHORT).show();
             return;
         }
 
         LocalDate date = (etDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etDate.getText().toString());
 
         if (date.isAfter(LocalDate.now())) {
-            Toast.makeText(this, "La fecha del concierto deber ser antes que hoy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_date_future, Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Detenemos si currentPoint es nulo
         if (currentPoint == null) {
-            Toast.makeText(this, "Por favor, selecciona una ubicación en el mapa", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_map_required, Toast.LENGTH_SHORT).show();
             return;
         }
 
