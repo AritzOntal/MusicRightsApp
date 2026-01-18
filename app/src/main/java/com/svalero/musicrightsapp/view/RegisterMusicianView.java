@@ -44,7 +44,7 @@ public class RegisterMusicianView extends AppCompatActivity implements RegisterM
                 idMusicianToEdit = musician.getId();
 
                 Button btn = findViewById(R.id.register_musician_button);
-                btn.setText("Modificar");
+                btn.setText(R.string.modify);
 
                 ((EditText) findViewById(R.id.musician_name)).setText(musician.getFirstName());
                 ((EditText) findViewById(R.id.musician_surname)).setText(musician.getLastName());
@@ -82,26 +82,31 @@ public class RegisterMusicianView extends AppCompatActivity implements RegisterM
 
         //VALIDACIONES DE SEGURIDAD
         if (firstName.isEmpty() || lastName.isEmpty() || dni.isEmpty()) {
-            Toast.makeText(this, "Nombre, Apellidos y DNI son obligatorios", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_musician_required, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!birthDateStr.isEmpty() && !birthDateStr.matches("\\d{2}-\\d{2}-\\d{4}")) {
-            Toast.makeText(this, "Formato fecha incorrecto. Usa: dd-MM-yyyy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_date_format, Toast.LENGTH_SHORT).show();
             return;
+        }
+
+        if (!dni.matches("\\d{8}[A-Za-z]")) {
+            Toast.makeText(this, R.string.val_dni_format, Toast.LENGTH_SHORT).show();
+            return; // Paramos aquí si el DNI está mal
         }
 
         //PARSEAMOS LA FECHA PARA PODER USAR AFTER DE VALIDACION
         LocalDate birthDate = (etBirthDate.getText().toString().isEmpty()) ? LocalDate.now() : DateUtil.parseDate(etBirthDate.getText().toString());
 
         if (birthDate.isAfter(LocalDate.now())) {
-            Toast.makeText(this, "La fecha de nacimiento no puede ser futura", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_birth_date_future, Toast.LENGTH_SHORT).show();
             return;
         }
 
 
         if (performanceFee < 0) {
-            Toast.makeText(this, "El caché debe ser positivo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.val_cache_negative, Toast.LENGTH_SHORT).show();
             return;
         }
 

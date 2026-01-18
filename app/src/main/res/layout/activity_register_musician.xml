@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Nombre"
+            android:hint="@string/musician_name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Apellidos"
+            android:hint="@string/musician_surname"
             android:inputType="textPersonName" />
 
         <EditText
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="DNI"
+            android:hint="@string/musician_dni"
             android:inputType="text" />
 
         <EditText
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Fecha Nacimiento"
+            android:hint="@string/musician_birth_date"
             android:inputType="date" />
 
         <EditText
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Caché"
+            android:hint="@string/musician_fee"
             android:inputType="numberDecimal" />
 
         <EditText
@@ -62,14 +62,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Número de Afiliado"
+            android:hint="@string/musician_affiliated_num"
             android:inputType="number" />
 
         <CheckBox
             android:id="@+id/musician_affiliated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¿afiliado?"
+            android:text="@string/musician_is_affiliated"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="10dp"/>
 
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:onClick="registerMusician"
-        android:text="Registrar"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

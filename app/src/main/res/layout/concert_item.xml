@@ -38,13 +38,13 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    tools:text="Nombre del Concierto" />
+                    tools:text="@string/show_title" />
 
                 <TextView
                     android:id="@+id/item_concert_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Ciudad - Fecha" />
+                    tools:text="@string/concert_date" />
 
             </LinearLayout>
 

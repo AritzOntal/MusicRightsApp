@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="¿Performed?" />
+            android:text="@string/performed" />
 
         <EditText
             android:id="@+id/concert_ticket_price"

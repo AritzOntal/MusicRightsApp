@@ -53,11 +53,6 @@ public class RegisterConcertPresenter implements RegisterConcertContract.Present
     @Override
     public void modifyConcert(long concertId, String showTitle, String city, String province, LocalDate date, String status, Boolean performed, Float ticketPrice, Double latitude, Double longitude) {
 
-        if (date.isAfter(LocalDate.now())) {
-            view.showError("La fecha del concierto deber ser antes que hoy");
-            return;
-        }
-
         Concert concertToModify = Concert.builder()
                 .showTitle(showTitle)
                 .city(city)
