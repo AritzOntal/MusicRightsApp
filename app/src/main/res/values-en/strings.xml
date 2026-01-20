@@ -32,6 +32,7 @@
     <string name="title_favorites">My Favorite Concerts</string>
 
     <string name="register">Register</string>
+    <string name="save_changes">Save Changes</string>
     <string name="modify">Modify</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>

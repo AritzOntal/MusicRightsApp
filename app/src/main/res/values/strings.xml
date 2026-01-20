@@ -31,6 +31,7 @@
     <string name="title_favorites">Mis Conciertos Favoritos</string>
 
     <string name="register">Registrar</string>
+    <string name="save_changes">Guardar cambios</string>
     <string name="modify">Modificar</string>
     <string name="delete">Eliminar</string>
     <string name="edit">Editar</string>
