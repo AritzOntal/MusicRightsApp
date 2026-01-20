@@ -35,7 +35,7 @@ public class EditFavoriteConcerts extends AppCompatActivity implements EditFavor
         }
 
         Button btn = findViewById(R.id.register_concert_button);
-        btn.setText("Guardar cambios");
+        btn.setText(R.string.save_changes);
         btn.setOnClickListener(v -> guardarCambios());
     }
 
