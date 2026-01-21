@@ -154,7 +154,7 @@ public class RegisterConcertView extends AppCompatActivity implements RegisterCo
             presenter.modifyConcert(idConcertToEdit, title, city, province, date, status, performed, price, latitude, longitude);
 
         } else {
-            long defaultMusicianId = 18L;
+            long defaultMusicianId = 1L;
             Musician musician = new Musician();
             musician.setId(defaultMusicianId);
 
